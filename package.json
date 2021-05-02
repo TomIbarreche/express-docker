@@ -1,0 +1,69 @@
+{
+  "name": "testing",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "babel src -d dist --source-maps",
+    "serve": "node dist/index.js",
+    "start": "SET NODE_ENV=development & babel-node src/index.js",
+    "dev": "nodemon -L --trace-warnings index.js --exec babel-node",
+    "test": "SET NODE_ENV=test& mocha --require babel-core/register --reporter spec --exit   tests/ --exec babel-node",
+    "test:watch": "SET NODE_ENV=development& mocha  --require babel-core/register --watch --reporter  spec   tests/ --exec babel-node",
+    "eslint": "eslint src/**/*.js --ignore-pattern \"node_modules/\""
+  },
+  "main": "index.js",
+  "author": "mbuyu",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-node8": "^1.2.0",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "supertest": "^3.4.2",
+    "nodemon": "^2.0.7"
+  },
+  "babel": {
+    "presets": [
+      "node8"
+    ]
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "eslintConfig": {
+    "plugins": [
+      "node"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:node/recommended"
+    ],
+    "rules": {
+      "node/no-unsupported-features/es-syntax": 0,
+      "node/no-unsupported-features/es-builtins": 0
+    },
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaVersion": 2018
+    }
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-redis": "^5.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.16.4",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.10.1",
+    "http": "0.0.1-security",
+    "js-yaml": "^4.1.0",
+    "knex": "^0.95.4",
+    "pg": "^8.6.0",
+    "redis": "^3.1.2",
+    "swagger-jsdoc": "^6.0.0-rc.6",
+    "swagger-ui-express": "^4.1.6"
+  }
+}

@@ -1,0 +1,13 @@
+version: "3"
+services:
+    nginx:
+        ports:
+            - "80:80"
+    express-api:
+        build:
+            context: .
+            args:
+                NODE_ENV: production
+        env_file:
+            - ./.env
+        command: node index.js

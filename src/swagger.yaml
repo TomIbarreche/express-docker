@@ -1,0 +1,215 @@
+definition:
+  openapi: 3.0.0
+  info:
+    title: Epic Road Trip Api
+    description: Everything is in the title
+    version: 0.1.0
+  servers:
+    - url : "http://localhost:5000/"
+  
+  tags:
+    - name: Users
+      description: Users of the applications
+
+  paths:
+    /api/v1/users:
+      get:
+        summary: Return all users
+        tags: [Users]
+        responses:
+          201:
+            description: list is good
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/GetUser'
+    /api/v1/users/signUp:
+      post:
+        summary: Create a new user
+        tags: [Users]
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignUpUser'
+        responses:
+          201:
+            description: success
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/GetUser'
+          400:
+            description: T'es un putain de boulet
+          500:
+            description: An error occurs
+    /api/v1/users/signIn:
+      post:
+        summary: User sign in
+        tags: [Users]
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignInUser'
+        responses:
+          201:
+            description: success log in
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/GetUser'
+          400:
+            description: bad request
+          401:
+            description: bad password
+          404:
+            description: user not found
+          500:
+            description: something went wrong 
+
+    /api/v1/users/{id}:
+      get:
+        summary: Get user by id
+        tags: [Users]
+        parameters:
+            - $ref: '#/components/parameters/userId'
+        responses:
+            201:
+                description: success
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/GetUser'
+            404:
+                description: The book wasnt found
+            500:
+                description: An error occurs
+      put:
+        summary: Update the user by id
+        tags: [Users]
+        parameters:
+            - $ref: '#/components/parameters/userId'
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignUpUser'
+        responses:
+            201:
+                description: the book was updated
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/GetUser'
+            400:
+                description: T'es un putain de boulet
+            404:
+                description: can't find the user
+            500:
+                description: An little problem
+      delete:
+        summary: Delete the user by Id
+        tags: [Users]
+        parameters:
+            - $ref: '#/components/parameters/userId'
+        responses:
+            201:
+              description: The user as been deleted
+              content:
+                  application/json:
+                    schema:
+                      type: object
+                      properties:
+                        id:
+                          type: int
+                          description: user id that has been deleted
+            404:
+                description: Cannot find the user
+            500:
+              description: an error occured
+  components:
+    parameters:
+      userId:
+        name: id
+        in: path
+        required: true
+        description: The id of the user
+        schema:
+          type: string
+    schemas:
+      GetUser:
+        type: object
+        required:
+          - id
+          - firstName
+          - email
+          - age
+        properties:
+          id:
+            type: string  
+            description: Id of the user
+          firstName: 
+            type: string
+            description: Name of the user
+          email: 
+            type: string
+            description: email of the user
+          age: 
+            type: int
+            description: age of the user
+        example:
+          id: 1
+          firstName: Tom
+          email: tom@tom.fr
+          age: 25
+      SignUpUser:
+        type: object
+        required:
+          - firstName
+          - email
+          - age
+          - password
+        properties:
+          id:
+            type: string  
+            description: Id of the user
+          firstName: 
+            type: string
+            description: Name of the user
+          email: 
+            type: string
+            description: email of the user
+          age: 
+            type: int
+            description: age of the user
+          password:
+            type: string
+            description: password of the user
+        example:
+          firstName: Tom
+          email: tom@tom.fr
+          age: 25
+          password: myPassword
+      SignInUser:
+        type: object
+        required:
+          - firstName
+          - password
+        properties:
+          firstName:
+            type: string
+            description: firstName of the user
+          password:
+            type: string
+            description: password of the user
+        example:
+          firstName: Tom
+          password: myPassword
+
+apis: ["S:/Dev/Node/Testing/src/route/*.js"]
