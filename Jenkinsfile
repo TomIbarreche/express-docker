@@ -14,7 +14,7 @@ pipeline {
                 }
             }
             steps {
-                npm run test
+               echo 'test'
             }
         }
     }
