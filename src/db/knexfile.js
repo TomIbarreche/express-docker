@@ -22,7 +22,8 @@ module.exports = {
     connection: {
       database: process.env.TEST_DB_NAME,
       user:     process.env.TEST_DB_USER,
-      password: process.env.TEST_DB_PWD
+      password: process.env.TEST_DB_PWD,
+      host: process.env.TEST_DB_HOST
     },
     pool: {
       min: 2,

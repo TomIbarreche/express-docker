@@ -22,7 +22,10 @@ const test = {
     "name": process.env.TEST_SRV_NAME,
     "host":process.env.TEST_HOST,
     "database": db,
-    "port": process.env.TEST_PORT
+    "port": process.env.TEST_PORT,
+    "redis_url": process.env.DEV_REDIS_HOST,
+    "redis_port": process.env.DEV_REDIS_PORT,
+    "session_secret": process.env.DEV_SESSION_SECRET
 }
 
 

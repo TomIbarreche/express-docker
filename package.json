@@ -6,7 +6,7 @@
     "serve": "node dist/index.js",
     "start": "SET NODE_ENV=development & babel-node src/index.js",
     "dev": "nodemon -L --trace-warnings index.js --exec babel-node",
-    "test": "SET NODE_ENV=test& mocha --require babel-core/register --reporter spec --exit   tests/ --exec babel-node",
+    "test": "mocha --require babel-core/register --reporter spec --exit   tests/ --exec babel-node",
     "test:watch": "SET NODE_ENV=development& mocha  --require babel-core/register --watch --reporter  spec   tests/ --exec babel-node",
     "eslint": "eslint src/**/*.js --ignore-pattern \"node_modules/\""
   },

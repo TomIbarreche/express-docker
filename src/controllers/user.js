@@ -21,7 +21,6 @@ class UserController {
         const {firstName, password} = req.body;
         try {
             const user = await userDAO.getUserByName(firstName);
-            console.log("after",user)
             if (!user){
                 next(ApiError.routeNotFound("FirstName incorrect"));
                 return
@@ -30,7 +29,6 @@ class UserController {
             if(!isCorrect){
                 next(ApiError.wrongLogin("Password incorrect"));
             }else{
-                console.log(req.session.user);
                 req.session.user = user;
                 res.status(201).json(user);
             }
