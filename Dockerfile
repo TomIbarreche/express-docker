@@ -12,4 +12,3 @@ RUN npm install --verbose
 COPY . ./
 ENV PORT 5000
 EXPOSE $PORT
-CMD "npm" "run" "dev"
