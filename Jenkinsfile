@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("build") {
             steps {
-                sh 'echo yolo'
+                docker-compose -f docker-compose.yaml -f docker-compose.test.yaml up -d --build
             }
         }
 
@@ -14,7 +14,6 @@ pipeline {
                 }
             }
             steps {
-                echo 'test'
                 npm run test
             }
         }
