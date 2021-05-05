@@ -1,5 +1,7 @@
 pipeline {
-    agent { dockerfile true }
+    agent { 
+        dockerfile true 
+    }
     environment {
         NEW_VERSION = '1.3.0'
         SERVER_CREDENTIALS = credentials('Server-user')
