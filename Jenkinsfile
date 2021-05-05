@@ -11,7 +11,7 @@ pipeline {
             steps {
                 echo "building version ${NEW_VERSION}"
                 withCredentials([
-                    usernamePassword(credentials: 'Server-user', usernameVariable: USER; passwordVariable: PWD)
+                    usernamePassword(credentials: 'Server-user', usernameVariable: USER, passwordVariable: PWD)
                 ]) {
                     sh "some script ${USER} and ${PWD} && docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d --build "
                 }
