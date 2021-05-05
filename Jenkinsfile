@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        docker 'Docker'
+        dockerTool 'Docker'
     }
     environment {
         NEW_VERSION = '1.3.0'
