@@ -1,6 +1,7 @@
 pipeline {
-    agent { 
-        dockerfile true 
+    agent any
+    tools {
+        docker 'Docker'
     }
     environment {
         NEW_VERSION = '1.3.0'
