@@ -3,6 +3,7 @@ WORKDIR /app
 # Copy package json to the current directory of our image so /app
 COPY package.json .
 ARG NODE_ENV
+ENV NODE_ENV $NODE_ENV
 RUN if [ "$NODE_ENV" = "development" ]; \
             then npm install; \
             else npm install --only=production; \

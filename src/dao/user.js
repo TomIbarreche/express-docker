@@ -24,21 +24,13 @@ class UserDao {
     }
 
     async getAllUsers() {
-        let users = [];
-        return db('users').select('*')
-        .then((res) => {
-            res.forEach(element => {
-                users.push(element);
-            });
-            return users;
-        })
+        let users= await db.column("id","first_name","email","age").select().from("users");
+        return users;
     }
 
     async getUserById(userId) {
-        return db('users').where('id', userId)
-        .then((res) => {
-            return res[0];
-        })
+        let user = db.column("id","first_name","email","age").select().from("users").where('id', userId);
+        return user;
     }
 
     async getUserByName(firstName){
