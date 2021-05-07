@@ -18,6 +18,8 @@ services:
         image: postgres
         volumes:
             - postgres-db:/var/lib/postgresql/data
+        environment:
+            POSTGRES_HOST_AUTH_METHOD: trust
     postgres-database-test:
         image: postgres
         volumes:

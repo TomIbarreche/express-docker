@@ -6,7 +6,7 @@ definition:
     version: 0.1.0
   servers:
     - url : "http://localhost:5000/"
-  
+
   tags:
     - name: Users
       description: Users of the applications
@@ -25,6 +25,12 @@ definition:
                   type: array
                   items:
                     $ref: '#/components/schemas/GetUser'
+          500:
+            description: something went wrong
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ApiError'
     /api/v1/users/signUp:
       post:
         summary: Create a new user
@@ -43,9 +49,17 @@ definition:
                 schema:
                   $ref: '#/components/schemas/GetUser'
           400:
-            description: T'es un putain de boulet
+            description: something went wrong
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ApiError'
           500:
-            description: An error occurs
+            description: something went wrong
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ApiError'
     /api/v1/users/signIn:
       post:
         summary: User sign in
@@ -211,5 +225,20 @@ definition:
         example:
           firstName: Tom
           password: myPassword
+      ApiError:
+        type: object
+        required:
+          - code
+          - message
+        properties:
+          code:
+            type: integer
+            description: code error
+          message:
+            type: string
+            description: message of the error
+        example:
+          code: 400
+          message: Bad request
 
 apis: ["S:/Dev/Node/Testing/src/route/*.js"]

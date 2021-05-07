@@ -6,7 +6,6 @@ function apiErrorHandler(err, req, res, next) {
         res.status(err.code).json(err.message);
         return ;
     }
-    console.log("OUPSI")
     res.status(500).json('something went wrong');
 }
 

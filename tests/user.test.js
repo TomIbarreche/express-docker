@@ -2,9 +2,6 @@ const server = require('../index');
 const request = require('supertest');
 const {expect} = require('chai');
 const knex = require('../src/db/db');
-const path = require('path');
-const db =require('../src/db/db');
-
 
 describe('Test for user API',()=>{
     before((done) => {
