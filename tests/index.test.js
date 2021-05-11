@@ -1,9 +1,22 @@
 const {expect} = require('chai');
 const config = require('../src/config/config');
-const server = require('../index');
-
+const {app, redisClient} = require('../index');
+const knex = require('../src/db/db');
 describe('Server', ()=>{
-    it('tests that server is running current port', async()=>{
-        expect(server.port.toString()).to.equal(config.port)
+    it('should running on config defined port', async()=>{
+        expect(config.port).to.equal('5000');
+    })
+
+    it('should running on config env', async()=>{
+        expect(config.name).to.equal("Server Test");
+    })
+
+    it('should be connect to a test database', async()=>{
+        let dataBase = await knex.count().from("pg_database").where("datname", "postgres_test");
+        expect(dataBase[0].count).to.equal('1');
+    })
+
+    it('should be connected to a redis database', async() => {
+        expect(redisClient.ready).to.be.true;
     })
 });

@@ -6,23 +6,9 @@ const Schema = require('../schema/user-schema');
 const protect = require('../middleware/authMiddleware');
 
 router.post(
-    '/signUp',
-    Schema.signUpValidation,
-    Validator.checkRules,
-    userController.signUp
-);
-
-router.post(
     '/postTest',
     protect,
     userController.createPost
-)
-
-router.post(
-    '/signIn',
-    Schema.signInValidation,
-    Validator.checkRules,
-    userController.signIn
 )
 
 router.put(

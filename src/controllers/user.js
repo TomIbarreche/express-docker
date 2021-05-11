@@ -4,41 +4,6 @@ const userDAO = require('../dao/user');
 const bcrypt = require('bcryptjs');
 
 class UserController {
-    async signUp(req, res, next) {
-        try {
-            const {firstName, email, age, password} = req.body;
-            const hashPassword = await bcrypt.hash(password, 12);
-            const newUser = await userDAO.signUp(firstName, email,age, hashPassword);
-            req.session.user = newUser.user;
-            res.status(201).json(newUser.user);
-        } catch(err) {
-            console.log(err);
-            next(ApiError.internalServerError("Oups! Something went wrong"));
-        }
-    }
-
-    async signIn(req, res, next) {
-        const {firstName, password} = req.body;
-        try {
-            const user = await userDAO.getUserByName(firstName);
-            if (!user){
-                next(ApiError.routeNotFound("FirstName incorrect"));
-                return
-            }
-            const isCorrect = await bcrypt.compare(password, user.password);
-            if(!isCorrect){
-                next(ApiError.wrongLogin("Password incorrect"));
-            }else{
-                req.session.user = user;
-                res.status(201).json(user);
-            }
-            
-        } catch (error) {
-            console.log(error);
-            next(ApiError.internalServerError("Oups! Something went wrong"));
-        }
-    }
-
     async createPost(req, res, next){
         try {
             const post = await userDAO.createPost();

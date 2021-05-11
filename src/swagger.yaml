@@ -8,33 +8,16 @@ definition:
     - url : "http://localhost:5000/"
 
   tags:
+    - name: Auth
+      description: route for authentification
     - name: Users
-      description: Users of the applications
+      description: route for users
 
   paths:
-    /api/v1/users:
-      get:
-        summary: Return all users
-        tags: [Users]
-        responses:
-          201:
-            description: list is good
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/GetUser'
-          500:
-            description: something went wrong
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/ApiError'
-    /api/v1/users/signUp:
+    /api/v1/signUp:
       post:
         summary: Create a new user
-        tags: [Users]
+        tags: [Auth]
         requestBody:
           required: true
           content:
@@ -60,10 +43,10 @@ definition:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ApiError'
-    /api/v1/users/signIn:
+    /api/v1/signIn:
       post:
         summary: User sign in
-        tags: [Users]
+        tags: [Auth]
         requestBody:
           required: true
           content:
@@ -85,7 +68,25 @@ definition:
             description: user not found
           500:
             description: something went wrong 
-
+    /api/v1/users:
+      get:
+        summary: Return all users
+        tags: [Users]
+        responses:
+          201:
+            description: list is good
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/GetUser'
+          500:
+            description: something went wrong
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ApiError'
     /api/v1/users/{id}:
       get:
         summary: Get user by id
@@ -213,17 +214,17 @@ definition:
       SignInUser:
         type: object
         required:
-          - firstName
+          - email
           - password
         properties:
-          firstName:
+          email:
             type: string
-            description: firstName of the user
+            description: email of the user
           password:
             type: string
             description: password of the user
         example:
-          firstName: Tom
+          email: tom@tom.fr
           password: myPassword
       ApiError:
         type: object

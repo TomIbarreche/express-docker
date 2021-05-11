@@ -8,7 +8,7 @@ const signUpValidation = [
 ]
 
 const signInValidation = [
-    body('firstName').exists({checkFalsy: true}).withMessage('name is required'),
+    body('email').exists({checkFalsy: true}).withMessage('email is required'),
     body('password').exists({checkFalsy: true}).withMessage('password is required')
 ]
 module.exports = { signUpValidation: signUpValidation, signInValidation: signInValidation};

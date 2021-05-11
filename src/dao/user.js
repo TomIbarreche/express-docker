@@ -1,20 +1,5 @@
 const db =require('../db/db');
 class UserDao {
-    async signUp(firstName, email, age, password) {
-        try {
-            const [user] = await db('users').insert({
-                first_name: firstName,
-                email: email,
-                age: age,
-                password: password
-            }).returning(['id', 'first_name','email', 'age']);
-            return {"user": user};
-        } catch (err) {
-            console.log(err);
-            next(ApiError.internalServerError("Oups! Something went wrong"));
-        }
-        
-    }
 
     async createPost() {
         const post = await db('posts').insert({
@@ -33,11 +18,9 @@ class UserDao {
         return user;
     }
 
-    async getUserByName(firstName){
-        return db('users').where('first_name', firstName)
-        .then((res) => {
-            return res[0]
-        })
+    async getUserByEmail(email){
+        let user = await db.column("id","first_name","email","age","password").select().from("users").where('email', email);
+        return user[0];
     }
 
     async updateUser(userId, body) {

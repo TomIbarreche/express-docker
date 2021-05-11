@@ -4,6 +4,8 @@ const express = require('express');
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require('swagger-ui-express');
 const userRouter = require('./src/route/user');
+const authRouter = require('./src/route/auth');
+
 const apiErrorHandler = require('./src/middleware/api-error-handler');
 const yaml = require('js-yaml');
 const session = require('express-session');
@@ -19,8 +21,6 @@ let redisClient = redis.createClient({
     host: config.redis_url,
     port: config.refis_port
 })
-
-
 
 let path = __dirname + '/src/swagger.yaml';
 
@@ -46,6 +46,7 @@ app.get("/api/v1", (req,res) => {
 })
 app.use(express.json());
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1', authRouter);
 app.use(apiErrorHandler);
 app.use("/api/v1/api-docs", swaggerUi.serve, swaggerUi.setup(specs, {explorer: true}));
 
@@ -53,5 +54,5 @@ const listen = app.listen(config.port, () => {
     console.log(`server is running in port ${config.port} and in ${config.name} mode`);
 });
 
-module.exports = app;
+module.exports = {app: app, redisClient: redisClient};
 module.exports.port=listen.address().port;
