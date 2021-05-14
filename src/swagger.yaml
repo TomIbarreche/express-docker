@@ -128,6 +128,7 @@ definition:
                 description: can't find the user
             500:
                 description: Something went wrong
+      delete:
         summary: Delete the user by Id
         tags: [Users]
         parameters:
