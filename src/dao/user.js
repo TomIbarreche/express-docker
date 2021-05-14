@@ -14,8 +14,8 @@ class UserDao {
     }
 
     async getUserById(userId) {
-        let user = db.column("id","first_name","email","age").select().from("users").where('id', userId);
-        return user;
+        let user = await db.column("id","first_name","email","age").select().from("users").where('id', userId);
+        return user[0];
     }
 
     async getUserByEmail(email){
@@ -30,7 +30,7 @@ class UserDao {
             userToUpdate[key] = value;
         }
         return db('users').where('id', userId).update({
-            first_name: userToUpdate.firstName,
+            first_name: userToUpdate.first_name,
             email: userToUpdate.email,
             age: userToUpdate.age,
 

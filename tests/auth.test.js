@@ -20,7 +20,7 @@ describe('Test for authentification',()=>{
     describe('Successfull signUp', () => {
         it("should sign up a new user", async() => {
             let user = {
-                firstName: "Bob",
+                first_name: "Bob",
                 email: "bob@bob.fr",
                 age: 25,
                 password: "Bob"
@@ -29,7 +29,7 @@ describe('Test for authentification',()=>{
             expect(insertedUser.status).to.equal(201);
             expect(insertedUser.body).to.be.an.instanceof(Array);
             expect(insertedUser.body.length).to.equal(1);
-            expect(insertedUser.body[0].first_name).to.equal(user.firstName);
+            expect(insertedUser.body[0].first_name).to.equal(user.first_name);
             expect(insertedUser.body[0].email).to.equal(user.email);
             expect(insertedUser.body[0].age).to.equal(user.age);
         })
@@ -54,7 +54,7 @@ describe('Test for authentification',()=>{
     describe('Failed SignUp', ()=> {
         it('should failed cause user email already exists', async() => {
             let user = {
-                firstName: "Tom",
+                first_name: "Tom",
                 email: "bob@bob.fr",
                 age: 25,
                 password: "Tom"
@@ -66,7 +66,7 @@ describe('Test for authentification',()=>{
 
         it('should fail due to a malform request', async() => {
             let user = {
-                firstName: "",
+                first_name: "",
                 email: "bob@bob.fr",
                 age: 25,
                 password: "Tom"

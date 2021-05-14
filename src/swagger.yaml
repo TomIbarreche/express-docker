@@ -101,7 +101,7 @@ definition:
                         schema:
                             $ref: '#/components/schemas/GetUser'
             404:
-                description: The book wasnt found
+                description: The user wasnt found
             500:
                 description: An error occurs
       put:
@@ -117,7 +117,7 @@ definition:
                 $ref: '#/components/schemas/SignUpUser'
         responses:
             201:
-                description: the book was updated
+                description: the user was updated
                 content:
                     application/json:
                         schema:
@@ -142,7 +142,7 @@ definition:
                       type: object
                       properties:
                         id:
-                          type: int
+                          type: string
                           description: user id that has been deleted
             404:
                 description: Cannot find the user
@@ -162,14 +162,14 @@ definition:
         type: object
         required:
           - id
-          - firstName
+          - first_name
           - email
           - age
         properties:
           id:
             type: string  
             description: Id of the user
-          firstName: 
+          first_name: 
             type: string
             description: Name of the user
           email: 
@@ -180,13 +180,13 @@ definition:
             description: age of the user
         example:
           id: 1
-          firstName: Tom
+          first_name: Tom
           email: tom@tom.fr
           age: 25
       SignUpUser:
         type: object
         required:
-          - firstName
+          - first_name
           - email
           - age
           - password
@@ -194,7 +194,7 @@ definition:
           id:
             type: string  
             description: Id of the user
-          firstName: 
+          first_name: 
             type: string
             description: Name of the user
           email: 
@@ -207,7 +207,7 @@ definition:
             type: string
             description: password of the user
         example:
-          firstName: Tom
+          first_name: Tom
           email: tom@tom.fr
           age: 25
           password: myPassword

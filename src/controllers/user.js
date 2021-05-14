@@ -44,7 +44,7 @@ class UserController {
                 next(ApiError.routeNotFound("Can't find this user"));
                 return
             }
-            res.status(201).json(updatedUser);
+            res.status(201).json(updatedUser[0]);
         }catch(err) {
             next(ApiError.internalServerError("Oups! Something went wrong"));
         }

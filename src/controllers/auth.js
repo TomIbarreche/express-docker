@@ -8,9 +8,9 @@ const bcrypt = require('bcryptjs');
 class AuthController {
     async signUp(req, res, next) {
         try {
-            const {firstName, email, age, password} = req.body;
+            const {first_name, email, age, password} = req.body;
             const hashPassword = await bcrypt.hash(password, 12);
-            const newUser = await authDAO.signUp(firstName, email,age, hashPassword);
+            const newUser = await authDAO.signUp(first_name, email,age, hashPassword);
             req.session.user = newUser;
             res.status(201).json(newUser);
         } catch(err) {

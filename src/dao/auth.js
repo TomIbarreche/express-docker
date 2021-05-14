@@ -1,9 +1,9 @@
 const db =require('../db/db');
 class AuthDAO {
-    async signUp(firstName, email, age, password) {
+    async signUp(first_name, email, age, password) {
        
         const user = await db('users').insert({
-            first_name: firstName,
+            first_name: first_name,
             email: email,
             age: age,
             password: password
