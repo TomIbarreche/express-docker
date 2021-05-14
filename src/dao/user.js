@@ -1,4 +1,5 @@
 const db =require('../db/db');
+const ApiError = require('../error/ApiError');
 class UserDao {
 
     async createPost() {
@@ -24,16 +25,24 @@ class UserDao {
     }
 
     async updateUser(userId, body) {
-
-        const userToUpdate = await db('users').where('id', userId).returning(['id', 'first_name','email', 'age', 'password']);
+        const userToUpdate = await db.column("id","first_name","email","age").select().from('users').where('id', userId);
+        if (userToUpdate.length == 0){
+            throw ApiError.routeNotFound(`Can't find this user`);
+        }
         for (const [key, value] of Object.entries(body)){
-            userToUpdate[key] = value;
+            if((key in userToUpdate[0])){
+                if(value == ""){
+                    throw ApiError.badRequest(`${key} can't be empty`);
+                }
+                userToUpdate[key] = value;
+            }else{
+               throw ApiError.badRequest(`${key} is not a valid field`);
+            }
         }
         return db('users').where('id', userId).update({
             first_name: userToUpdate.first_name,
             email: userToUpdate.email,
             age: userToUpdate.age,
-
         }, ['id', 'first_name', 'email', 'age'])
     }
 

@@ -40,13 +40,16 @@ class UserController {
         try{
             const userId = req.params.id;
             const updatedUser = await userDAO.updateUser(userId, req.body);
-            if (!updatedUser[0]){
-                next(ApiError.routeNotFound("Can't find this user"));
-                return
-            }
             res.status(201).json(updatedUser[0]);
         }catch(err) {
-            next(ApiError.internalServerError("Oups! Something went wrong"));
+            if (err.code == 400){
+                next(ApiError.badRequest(err.message));
+            }else if(err.code == 404){
+                next(ApiError.routeNotFound(err.message));
+            }
+            else {
+                next(ApiError.internalServerError("Oups! Something went wrong"));
+            }
         }
     }
 

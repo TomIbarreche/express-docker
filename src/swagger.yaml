@@ -123,12 +123,11 @@ definition:
                         schema:
                             $ref: '#/components/schemas/GetUser'
             400:
-                description: T'es un putain de boulet
+                description: Malform request
             404:
                 description: can't find the user
             500:
-                description: An little problem
-      delete:
+                description: Something went wrong
         summary: Delete the user by Id
         tags: [Users]
         parameters:
