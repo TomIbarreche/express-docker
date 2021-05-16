@@ -23,4 +23,7 @@ jobs:
     - run: npm run build --if-present 
     - name: run tests
       run: docker-compose -f docker-compose.yaml -f docker-compose.test.yaml up -d --build
+    - name: actual test
+      run: npm run test
+      
   
