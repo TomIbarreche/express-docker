@@ -25,8 +25,10 @@ jobs:
       run: docker-compose -f docker-compose.yaml -f docker-compose.test.yaml up -d --build
     - name: docker
       run : docker ps -a
+    - name : check
+      run : docker logs testing_express-api_1
     - name: actual test
-      run: npm run test
+      run: docker exec testing_express-api_1 npm run test
       env:
         NODE_ENV: test
         DEV_REDIS_HOST : redis
