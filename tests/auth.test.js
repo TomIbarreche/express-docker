@@ -31,7 +31,7 @@ describe('Test for authentification',()=>{
             expect(insertedUser.body.length).to.equal(1);
             expect(insertedUser.body[0].first_name).to.equal(user.first_name);
             expect(insertedUser.body[0].email).to.equal(user.email);
-            expect(insertedUser.body[0].age).to.equal(user.age);
+            expect(insertedUser.body[0].age).to.equal(user.email);
         })
 
         it("should hash the user's password", async () => {
