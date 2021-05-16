@@ -26,9 +26,9 @@ jobs:
     - name: docker
       run : docker ps -a
     - name : check
-      run : docker logs testing_express-api_1
+      run : docker logs express-docker_express-api_1
     - name: actual test
-      run: docker exec testing_express-api_1 npm run test
+      run: docker exec express-docker_express-api_1 npm run test
       env:
         NODE_ENV: test
         DEV_REDIS_HOST : redis
