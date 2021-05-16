@@ -25,6 +25,6 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - name: run tests
-      - run: docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml uo -d --build
+    - name: run tests
+    - run: docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml uo -d --build
   
