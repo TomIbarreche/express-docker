@@ -24,6 +24,6 @@ jobs:
     - name: run tests
       run: docker-compose -f docker-compose.yaml -f docker-compose.test.yaml up -d --build
     - name: actual test
-      run: SET NODE_ENV=test && npm run test
+      run: set NODE_ENV=test && npm run test
       
   
