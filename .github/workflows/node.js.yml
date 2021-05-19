@@ -16,29 +16,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js 14
-      uses: actions/setup-node@v2
-      with:
-        node-version: 14
-    - run: npm ci
-    - run: npm run build --if-present 
-    - name: run tests
-      run: docker-compose -f docker-compose.yaml -f docker-compose.test.yaml up -d --build
-    - name: docker
-      run : docker ps -a
-    - name : check
-      run : docker logs express-docker_express-api_1
-    - name: actual test
-      run: docker exec express-docker_express-api_1 npm run test
-      env:
-        NODE_ENV: test
-        DEV_REDIS_HOST : redis
-        DEV_REDIS_PORT : 6379
-        DEV_SESSION_SECRET : secret
-        TEST_SRV_NAME : Server Test
-        TEST_PORT : 5000  
-        TEST_DB_NAME : postgres_test
-        TEST_DB_USER : postgres
-        TEST_DB_PWD : postgres
-        TEST_DB_HOST : postgres-database-test
+      run : lftp -c "set ftp:ssl-allow no; open -u root ,0451The_Bioshock_Within 178.62.217.57; mirror -Rnev ./ ./ --ignore-time --parallel=10 --exclude-glob .git* --exclude .git/" 
       
   
