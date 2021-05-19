@@ -10,15 +10,24 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Update
-      run :  sudo apt-get update
-    - name: install lftp
-      run: sftp -P 22 root@178.62.217.57
+      - name: deploy
+        uses: appleboy/ssh-action@v0.1.2
+        with:
+          host: ${{secrets.HOST}}
+          key: ${{SSH_KEY}}
+          username: ${{USER}}
+          
+          script: |
+            mkdir test
+            cd test
+            git clone git@github.com:TomIbarreche/express-docker.git
+            echo 'Cest passé'
+          
+
+ 
    
  
       
