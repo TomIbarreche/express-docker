@@ -26,6 +26,6 @@ jobs:
     - name: ls
       run : ls
     - name : put
-      run : put coin.txt
+      run : sftp put coin.txt
       
   
