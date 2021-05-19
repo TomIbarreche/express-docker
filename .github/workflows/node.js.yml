@@ -20,12 +20,11 @@ jobs:
     - name: install lftp
       run: sudo apt-get install lftp
     - name: coin
-      run : lftp sftp://root:0451The_Bioshock_Within@178.62.217.57
+      run : lftp ftp://root:0451The_Bioshock_Within@178.62.217.57 -e "mirror -e -R  ./ ./ ; quit"
     - name: pwd
       run : pwd
     - name: ls
       run : ls
-    - name : put
-      run : sftp put coin.txt
+ 
       
   
