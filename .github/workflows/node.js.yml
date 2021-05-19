@@ -20,7 +20,7 @@ jobs:
     - name: install lftp
       run: sudo apt-get install lftp
     - name: lftp -e "pwd"
-      run : pwd
+      run : cd coin
     - name: ls
       run : ls
     - name: coin
