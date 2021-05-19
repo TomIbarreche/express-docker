@@ -19,12 +19,13 @@ jobs:
       run :  sudo apt-get update
     - name: install lftp
       run: sudo apt-get install lftp
-    - name: coin
-      run : lftp ftp://root:0451The_Bioshock_Within@178.62.217.57 -e "mirror -e -R  ./coin ./ ; quit"
     - name: pwd
       run : pwd
     - name: ls
       run : ls
+    - name: coin
+      run : lftp ftp://root:0451The_Bioshock_Within@178.62.217.57 -e "mirror -e -R  ./coin ./ ; quit"
+   
  
       
   
