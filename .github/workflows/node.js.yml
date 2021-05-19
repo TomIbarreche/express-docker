@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js 14
-      run :  apt-get update -qq && apt-get install -y -qq lftp
+      run :  sudo apt-get update -qq && apt-get install -y -qq lftp
     - name: coin
       run : lftp -c "set ftp:ssl-allow no; open -u root ,0451The_Bioshock_Within 178.62.217.57; mirror -Rnev ./ ./ --ignore-time --parallel=10 --exclude-glob .git* --exclude .git/" 
       
