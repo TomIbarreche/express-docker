@@ -20,6 +20,6 @@ jobs:
     - name: install lftp
       run: sudo apt-get install lftp
     - name: coin
-      run : lftp -c "set ftp:ssl-allow no; open -u $USER ,$PASSWORD $HOST; mirror -Rnev ./ ./ --ignore-time --parallel=10 --exclude-glob .git* --exclude .git/" 
+      run : sftp -oPort=22 root@178.62.217.57
       
   
