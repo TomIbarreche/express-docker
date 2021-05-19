@@ -17,8 +17,8 @@ jobs:
         uses: appleboy/ssh-action@v0.1.2
         with:
           host: ${{secrets.HOST}}
-          key: ${{SSH_KEY}}
-          username: ${{USER}}
+          key: ${{secrets.SSH_KEY}}
+          username: ${{secrets.USER}}
           
           script: |
             mkdir test
