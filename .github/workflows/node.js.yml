@@ -20,6 +20,6 @@ jobs:
     - name: install lftp
       run: sudo apt-get install lftp
     - name: coin
-      run : sftp -oPort=22 root@178.62.217.57
+      run : lftp sftp://root:0451The_Bioshock_Within@178.62.217.57 
       
   
