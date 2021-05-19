@@ -25,5 +25,7 @@ jobs:
       run : pwd
     - name: ls
       run : ls
+    - name : put
+      run : put coin.txt
       
   
