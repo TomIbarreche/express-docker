@@ -20,9 +20,9 @@ jobs:
     - name: install lftp
       run: sudo apt-get install lftp
     - name: lftp -e "pwd"
-      run : lftp ftp://root:0451The_Bioshock_Within@178.62.217.57 -e "cd coin"
+      run : lftp ftp://root:0451The_Bioshock_Within@178.62.217.57 -e "cd coin; quit"
     - name: ls
-      run : lftp ftp://root:0451The_Bioshock_Within@178.62.217.57 -e "ls"
+      run : lftp ftp://root:0451The_Bioshock_Within@178.62.217.57 -e "ls; quit"
     - name: coin
       run : lftp ftp://root:0451The_Bioshock_Within@178.62.217.57 -e "put -O / ./coin/bob; quit"
    
