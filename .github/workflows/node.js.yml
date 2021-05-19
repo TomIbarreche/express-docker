@@ -24,7 +24,7 @@ jobs:
     - name: ls
       run : ls
     - name: coin
-      run : lftp ftp://root:0451The_Bioshock_Within@178.62.217.57 -e "put -O / ./coin/t"
+      run : lftp ftp://root:0451The_Bioshock_Within@178.62.217.57 -e "put -O / ./coin/bob.txt"
    
  
       
